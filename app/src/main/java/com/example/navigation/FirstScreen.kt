@@ -20,7 +20,10 @@ import androidx.compose.ui.unit.sp
 import com.example.navigation.ui.theme.NavigationTheme
 
 @Composable
-fun FirstScreen(modifier: Modifier = Modifier) {
+fun FirstScreen(
+    navigationToSecondScreen: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     val name = remember { mutableStateOf("") }
     Column(
         modifier = modifier
@@ -38,7 +41,7 @@ fun FirstScreen(modifier: Modifier = Modifier) {
             value = name.value,
             onValueChange = { name.value = it }
         )
-        Button(onClick = {}) {
+        Button(onClick = { navigationToSecondScreen() }) {
             Text(text = "Go to Second Screen")
         }
     }
@@ -48,6 +51,6 @@ fun FirstScreen(modifier: Modifier = Modifier) {
 @Composable
 fun FirstPreview() {
     NavigationTheme {
-        FirstScreen()
+        FirstScreen(navigationToSecondScreen = {})
     }
 }

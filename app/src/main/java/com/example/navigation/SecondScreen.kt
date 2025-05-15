@@ -15,7 +15,10 @@ import androidx.compose.ui.unit.sp
 import com.example.navigation.ui.theme.NavigationTheme
 
 @Composable
-fun SecondScreen(modifier: Modifier = Modifier) {
+fun SecondScreen(
+    navigateToFirstScreen: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -31,7 +34,7 @@ fun SecondScreen(modifier: Modifier = Modifier) {
             text = "Welcome",
             fontSize = 24.sp,
         )
-        Button(onClick = {}) {
+        Button(onClick = { navigateToFirstScreen() }) {
             Text(text = "Go to First Screen")
         }
     }
@@ -41,6 +44,6 @@ fun SecondScreen(modifier: Modifier = Modifier) {
 @Composable
 fun SecondPreview() {
     NavigationTheme {
-        SecondScreen()
+        SecondScreen(navigateToFirstScreen = {})
     }
 }
