@@ -16,7 +16,8 @@ import com.example.navigation.ui.theme.NavigationTheme
 
 @Composable
 fun SecondScreen(
-    navigateToFirstScreen: () -> Unit,
+    name: String,
+    navigateToFirstScreen: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -31,10 +32,10 @@ fun SecondScreen(
             fontSize = 24.sp,
         )
         Text(
-            text = "Welcome",
+            text = "Welcome $name",
             fontSize = 24.sp,
         )
-        Button(onClick = { navigateToFirstScreen() }) {
+        Button(onClick = { navigateToFirstScreen(name) }) {
             Text(text = "Go to First Screen")
         }
     }
@@ -44,6 +45,9 @@ fun SecondScreen(
 @Composable
 fun SecondPreview() {
     NavigationTheme {
-        SecondScreen(navigateToFirstScreen = {})
+        SecondScreen(
+            name = "Hello, World!",
+            navigateToFirstScreen = {}
+        )
     }
 }

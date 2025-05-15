@@ -37,13 +37,19 @@ fun Navigation(modifier: Modifier = Modifier) {
     ) {
         composable(route = "firstScreen") {
             FirstScreen(
-                navigationToSecondScreen = { navController.navigate("secondScreen") },
+                navigationToSecondScreen = { name ->
+                    navController.navigate("secondScreen/$name")
+                },
                 modifier = modifier,
             )
         }
-        composable(route = "secondScreen") {
+        composable(route = "secondScreen/{name}") {
+            val name = it.arguments?.getString("name").orEmpty()
             SecondScreen(
-                navigateToFirstScreen = {},
+                name = name,
+                navigateToFirstScreen = {
+                    navController.navigate("firstScreen")
+                },
                 modifier = modifier,
             )
         }

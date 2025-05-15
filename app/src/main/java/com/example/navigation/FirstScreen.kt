@@ -21,7 +21,7 @@ import com.example.navigation.ui.theme.NavigationTheme
 
 @Composable
 fun FirstScreen(
-    navigationToSecondScreen: () -> Unit,
+    navigationToSecondScreen: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val name = remember { mutableStateOf("") }
@@ -41,7 +41,7 @@ fun FirstScreen(
             value = name.value,
             onValueChange = { name.value = it }
         )
-        Button(onClick = { navigationToSecondScreen() }) {
+        Button(onClick = { navigationToSecondScreen(name.value) }) {
             Text(text = "Go to Second Screen")
         }
     }
